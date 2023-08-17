@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 
 items = [
    {"id": 1, "name": "Кроссовки abibas"},
@@ -10,13 +10,30 @@ items = [
 ]
 
 def home(request):
-    text = """<h1> "Изучаем django" </h1 >
-              <strong> Автор </strong>: <i> Проскуряков А.П. </i>
-           """
-    return HttpResponse(text)
+    context = {
+        "name": "Петров",
+        "email": "mail.ru"
+    }
+    return render(request, "index.html", context)
+
 def about(request):
-    text = """ <h1> "Имя: Антон "</h1> </b>
-               <h1> "Отчество: Валерьевич "</h1> </b>
+    text = """ <h1> "Имя: Антон "</h1> </br>
+               <h1> "Отчество: Валерьевич "</h1> </br>
                <h1> "Фамилия: Проскуряков"</h1>  
            """
     return HttpResponse(text)
+
+def item_des(request,id):
+    for item in items:
+        if item["id"] == id:
+            context = {
+                "item": item["name"]
+            }
+
+    return render(request, "item.html", context)
+
+def get_items(request):
+    context = {
+        "items": items
+    }
+    return render(request, "items_list.html", context)
