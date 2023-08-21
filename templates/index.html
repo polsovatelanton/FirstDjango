@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Start page</title>
-</head>
-<body>
-<header>
-    /<a href="/"> Home</a> / <a href ='/items'> Items </a> / <a href = "/about"> About </a> /
-</header>
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'inc-1.html' %}
     <h1> Приветствую! </h1>
 
     Автора зовут : <i> {{ name }} </i> <br>
     Мой эмейл : {{ email }} <br>
     Это главная страница сайта<br>
     <i> Сайт находится в разработке </i>
-    <p> <a href= "/items">Назад к списку товаров</a></p>
-</body>
-</html>
+
+    {% include 'inc-2.html' %}
+{% endblock %}
